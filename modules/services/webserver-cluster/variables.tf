@@ -15,7 +15,7 @@ variable "db_remote_state_key" {
     type = string 
 }
 
-variable instance_tyoe" {
+variable "instance_type" {
     description = "the type of EC2 instance to run"
     type = string
 }

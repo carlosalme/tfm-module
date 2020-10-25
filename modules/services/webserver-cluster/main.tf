@@ -15,7 +15,7 @@ data "template_file" "user_data" {
     vars = {
         server_port = var.server_port
         db_address = data.terraform_remote_state.db.outputs.address
-        db_port = data.terraform_terraform_remote_state.db.outputs.port
+        db_port = data.terraform_remote_state.db.outputs.port
     }
 }
 
@@ -31,7 +31,7 @@ resource "aws_autoscaling_group" "example" {
     tag {
         key = "Name"
         value = var.cluster_name
-        propagate_at_lounch = true
+        propagate_at_launch = true
     }
 }
 
@@ -51,7 +51,7 @@ resource "aws_security_group_rule" "allow_server_http_inbound" {
 
 resource "aws_lb" "example" {
     name = var.cluster_name
-    laod_balancer_type = "application"
+    load_balancer_type = "application"
     subnets = data.aws_subnet_ids.default.ids
     security_groups = [aws_security_group.alb.id]
 }
@@ -84,10 +84,10 @@ resource "aws_lb_target_group" "asg" {
         path = "/"
         protocol = "HTTP"
         matcher = "200"
-        intervel = 15
+        interval = 15
         timeout = 3
         healthy_threshold = 2
-        unhealthy_thresold = 2
+        unhealthy_threshold = 2
     }
 }
 
@@ -112,7 +112,7 @@ resource "aws_security_group" "alb" {
 }
 
 resource "aws_security_group_rule" "allow_http_inbound" {
-    type = ingress"
+    type = "ingress" # <------ check your ""
     security_group_id = aws_security_group.alb.id
 
     from_port = local.http_port
@@ -135,7 +135,7 @@ data "terraform_remote_state" "db" {
     backend = "s3"
 
     config = {
-        bucket = var.db_remote_state_bucket
+        bucket = var.db_remote_state_buket
         key = var.db_remote_state_key
         region = "us-east-2"
     }

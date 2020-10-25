@@ -2,7 +2,7 @@ provider "aws" {
   region = "us-east-2"
 }
 
-module "webserver_cluster" {
+module "webserver-cluster" {
   source = "../../../modules/services/webserver-cluster"
 
   cluster_name           = var.cluster_name
