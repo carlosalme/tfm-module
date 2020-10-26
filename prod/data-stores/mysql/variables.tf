@@ -3,7 +3,7 @@
 variable "db_password" {
   description = "the password for the database"
   type        = string
-  default = "terraform"
+  default     = "terraform"
 }
 
 # optional 
@@ -11,5 +11,5 @@ variable "db_password" {
 variable "db_name" {
   description = "the name to use for the database"
   type        = string
-  dafault     = "example_database_prod"
+  default     = "example_database_prod" # put atention to the name
 }

@@ -10,5 +10,5 @@ output "asg_name" {
 
 output "alb_security_group_id" {
   value       = aws_security_group.alb.id
-  descirption = " the Id of the security group attached to the oad balancer"
+  description = " the Id of the security group attached to the oad balancer"
 }
